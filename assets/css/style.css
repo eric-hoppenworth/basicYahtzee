@@ -1,0 +1,11 @@
+#hand {
+	margin-top: 150px;
+	margin-bottom: 50px;
+}
+.unfrozen {
+	border: solid 1px black;
+}
+
+.frozen{
+	border: solid 1px red;
+}
