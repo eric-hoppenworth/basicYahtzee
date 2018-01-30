@@ -21,7 +21,7 @@ $("#start").on("click",function(){
 	//if I have won, display message
 	if(myGame.evaluate()){
 		myGame = null;
-		$(this).text("You Win!");
+		$(this).text("You Win! Play Again?");
 		$("#rollsRemaining").text(`CONGRATULATIONS!!`);
 	} else if(rolls === 0){
 		//if I am out of rolls, display loss message
