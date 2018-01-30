@@ -48,12 +48,11 @@ Game.prototype.evaluate = function(){
 };
 Game.prototype.roll = function(){
 	this.rollsRemaining--;
-	console.log(this.rollsRemaining);
 	if(this.rollsRemaining >= 0){
 		this.hand.roll();
 		//display (removed from test)
-		return this.hand.evaluate();
+		return this.rollsRemaining;
 	}else{
-		return this.hand.evaluate();
+		return "No More Rolls";
 	}
 }
