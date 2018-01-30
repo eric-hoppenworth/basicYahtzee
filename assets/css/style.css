@@ -3,9 +3,9 @@
 	margin-bottom: 50px;
 }
 .unfrozen {
-	border: solid 1px black;
+	border: solid 2px black;
 }
 
 .frozen{
-	border: solid 1px red;
+	border: solid 2px red;
 }

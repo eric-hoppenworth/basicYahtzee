@@ -48,20 +48,16 @@ Game.prototype.evaluate = function(){
 };
 Game.prototype.roll = function(){
 	this.rollsRemaining--;
-
-	if(this.rollsRemaining > 0){
+	if(this.rollsRemaining >= 0){
 		this.hand.roll();
-		//display (removed from test)
-		return this.hand.evaluate();
-	}else{
-		return this.hand.evaluate();
+		return this.rollsRemaining;
 	}
 }
 //above code is copied in from constructors.js
 
 
 
-//this test is not perfect, but I will end up running it a bunch by the time I finish
+//Die Tests
 test("A Die will roll a number between 1 and 6",()=>{
 	const myDie = new Die();
 	const isBetweenOneAndSix = (input) => input >= 1 && input <=6;
@@ -95,6 +91,15 @@ test("A die can be rolled to a new number",()=>{
 	expect(myDie.value).not.toEqual(startValue);
 });
 
+
+//hand tests
+//function allows me to set all values to six
+const cheat = (hand) => {
+	hand.dice.forEach((item)=>{
+		item.value = 6;
+	});
+}
+
 test("A hand can be created with five random dice",()=>{
 	const myHand = new Hand();
 	expect(myHand.dice.length).toEqual(5);
@@ -102,19 +107,35 @@ test("A hand can be created with five random dice",()=>{
 
 test("A hand with all of the same number will win",()=>{
 	const myHand = new Hand();
-	myHand.dice.forEach((item)=>{
-		item.value = 6;
-	});
+
+	cheat(myHand);
 
 	expect(myHand.evaluate()).toEqual(true);
 });
 
 test("A hand without all the same value will not win",()=>{
 	const myHand = new Hand();
-	myHand.dice.forEach((item)=>{
-		item.value = 6;
-	});
+	cheat(myHand);
 	myHand.dice[0] = 1;
 
 	expect(myHand.evaluate()).toEqual(false);
-})
+});
+
+
+//game tests
+test("A game will have no more moves after three rolls",()=>{
+	const myGame = new Game();
+	let rolls = myGame.roll();
+	rolls = myGame.roll();
+	rolls = myGame.roll();
+
+	expect(rolls).toEqual(0);
+});
+
+test("A game can be won",()=>{
+	const myGame = new Game();
+	cheat(myGame.hand);
+
+	expect(myGame.evaluate()).toEqual(true);
+});
+

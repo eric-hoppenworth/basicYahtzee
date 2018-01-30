@@ -20,6 +20,7 @@ Die.prototype.toggle = function(){
 ////////////////////////////////
 //////   HAND CONSTRUCTOR //////
 ////////////////////////////////
+//default number is 5 dice, but it can be set to more.
 function Hand(numberOfDice = 5){
 	this.dice = [];
 	for(let i = 0; i < numberOfDice;i++){
@@ -27,11 +28,13 @@ function Hand(numberOfDice = 5){
 	}
 }
 Hand.prototype.roll = function(){
+	//roll each of the dice in the hand
 	this.dice.forEach((item)=>{
 		item.roll();
 	});
 }
 Hand.prototype.evaluate = function(){
+	//check each of the dice in the hand
 	const checkValue = this.dice[0].value;
 	return this.dice.every( item => item.value === checkValue )
 }
@@ -39,20 +42,18 @@ Hand.prototype.evaluate = function(){
 ////////////////////////////////
 //////   GAME CONSTRUCTOR //////
 ////////////////////////////////
-function Game(){
-	this.hand = new Hand();
-	this.rollsRemaining = 3;
+//default value is 3, but could be set to more
+function Game(turns = 3, dice = 5){
+	this.hand = new Hand(dice);
+	this.rollsRemaining = turns;
 }
-Game.prototype.evaluate = function(){
+Game.prototype.evaluate = function(){	
 	return this.hand.evaluate();
 };
 Game.prototype.roll = function(){
 	this.rollsRemaining--;
 	if(this.rollsRemaining >= 0){
 		this.hand.roll();
-		//display (removed from test)
 		return this.rollsRemaining;
-	}else{
-		return "No More Rolls";
 	}
 }
