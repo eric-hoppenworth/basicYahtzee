@@ -1,0 +1,1 @@
+const {Hand, Die} = require("./index.js");

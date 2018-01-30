@@ -1,0 +1,22 @@
+{
+  "name": "basicyahtzee",
+  "version": "1.0.0",
+  "description": "a basic yahtzee game",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eric-hoppenworth/basicYahtzee.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eric-hoppenworth/basicYahtzee/issues"
+  },
+  "homepage": "https://github.com/eric-hoppenworth/basicYahtzee#readme",
+  "dependencies": {
+    "jest": "^22.1.4"
+  }
+}
